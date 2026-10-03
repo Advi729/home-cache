@@ -39,4 +39,4 @@ dist-ssr/
 *.tsbuildinfo
 
 # Ignore all contents inside the upload folder
-server/public/upload/
+server/public/uploads/
