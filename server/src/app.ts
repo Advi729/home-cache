@@ -1,6 +1,8 @@
 import express from "express";
 import cors from "cors";
 
+import documentRoutes from "./routes/document.routes.js";
+
 const app = express();
 
 app.use(cors());
@@ -12,6 +14,8 @@ app.get("/api/health", (_req, res) => {
     message: "Home Cache API is running",
   });
 });
+
+app.use("/api/documents", documentRoutes);
 
 
 

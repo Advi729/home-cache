@@ -10,7 +10,7 @@ const startServer = async () => {
   await connectDB();
 
   app.listen(PORT, () => {
-    console.log(`HomeMemory server running on http://localhost:${PORT}`);
+    console.log(`HomeCache server running on http://localhost:${PORT}`);
   });
 };
 
