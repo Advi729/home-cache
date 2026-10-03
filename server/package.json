@@ -5,13 +5,14 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "tsx watch src/server.ts",
+    "dev": "tsx watch --env-file=.env src/server.ts",
     "build": "tsc",
     "start": "node dist/server.js"
   },
   "keywords": [],
   "type": "module",
   "dependencies": {
+    "@huggingface/inference": "^4.13.30",
     "cors": "^2.8.6",
     "dotenv": "^18.0.5",
     "express": "^5.2.1",

@@ -17,6 +17,8 @@ export interface IHomeDocument extends Document {
   type: DocumentType;
 
   extractedText: string;
+  createdAt: Date;
+  updatedAt: Date;
 
   metadata: {
     productName?: string;

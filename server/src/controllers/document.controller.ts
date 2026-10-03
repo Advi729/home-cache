@@ -4,6 +4,8 @@ import fs from "fs/promises";
 import { HomeDocument } from "../models/Document.js";
 import { extractPdfText } from "../services/documents/textExtractor.js";
 
+import { ingestDocument } from "../services/rag/ingestDocument.js";
+
 export const uploadDocument = async (
   req: Request,
   res: Response
@@ -42,16 +44,22 @@ export const uploadDocument = async (
       extractedText,
     });
 
+    const chunkCount = await ingestDocument(
+      document._id,
+      extractedText
+    );
+
     res.status(201).json({
       success: true,
-      message: "Document uploaded successfully.",
+      message: "Document uploaded and indexed successfully.",
       data: {
         id: document._id,
         name: document.name,
         type: document.type,
         size: document.size,
         extractedTextLength: extractedText.length,
-        // createdAt: document.createdAt,
+        chunkCount,
+        createdAt: document.createdAt,
       },
     });
   } catch (error) {
