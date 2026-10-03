@@ -40,7 +40,7 @@ const fileFilter: multer.Options["fileFilter"] = (
     cb(null, true);
     return;
   }
-console.log('file:::-> ',file);
+  
   cb(new Error("Only PDF files are currently supported."));
 };
 

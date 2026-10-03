@@ -17,9 +17,8 @@ export const uploadDocument = async (
 
       return;
     }
-console.log('in ctrller req.file: ', req.file);
+
     const extractedText = await extractPdfText(req.file.path);
-    console.log('exttext: ', extractedText);
 
     if (!extractedText) {
       await fs.unlink(req.file.path);
@@ -47,7 +46,6 @@ console.log('in ctrller req.file: ', req.file);
       success: true,
       message: "Document uploaded successfully.",
       data: {
-        ...document,
         id: document._id,
         name: document.name,
         type: document.type,
@@ -62,6 +60,63 @@ console.log('in ctrller req.file: ', req.file);
     res.status(500).json({
       success: false,
       message: "Failed to process document.",
+    });
+  }
+};
+
+// Retrieve multiple documents
+export const getDocuments = async (
+  _req: Request,
+  res: Response
+): Promise<void> => {
+  try {
+    const documents = await HomeDocument.find()
+      .select("-extractedText")
+      .sort({ createdAt: -1 });
+
+    res.json({
+      success: true,
+      data: documents,
+    });
+  } catch (error) {
+    console.error("Get documents error:", error);
+
+    res.status(500).json({
+      success: false,
+      message: "Failed to fetch documents.",
+    });
+  }
+};
+
+// Retrieve single document
+export const getDocument = async (
+  req: Request,
+  res: Response
+): Promise<void> => {
+  try {
+    const document = await HomeDocument.findById(
+      req.params.id
+    ).select("-extractedText");
+
+    if (!document) {
+      res.status(404).json({
+        success: false,
+        message: "Document not found.",
+      });
+
+      return;
+    }
+
+    res.json({
+      success: true,
+      data: document,
+    });
+  } catch (error) {
+    console.error("Get document error:", error);
+
+    res.status(500).json({
+      success: false,
+      message: "Failed to fetch document.",
     });
   }
 };
