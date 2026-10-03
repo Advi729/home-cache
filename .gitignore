@@ -37,3 +37,6 @@ dist-ssr/
 
 # TypeScript cache
 *.tsbuildinfo
+
+# Ignore all contents inside the upload folder
+server/public/upload/*
