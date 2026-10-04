@@ -1,0 +1,41 @@
+@import url("https://fonts.googleapis.com/css2?family=Mona+Sans:ital,wght@0,200..900;1,200..900&display=swap");
+@import "tailwindcss";
+
+@theme {
+	--font-sans:
+		"Mona Sans", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
+		"Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";  
+}
+
+/* html,
+body {
+	@apply bg-slate-50 text-slate-900;
+}
+
+main {
+	@apply min-h-screen pt-10;
+}
+
+h1 {
+	@apply max-sm:text-[3rem] text-6xl bg-linear-to-r from-slate-950 to-slate-500 bg-clip-text text-transparent leading-tight xl:tracking-[-2px] font-semibold;
+}
+
+h2 {
+	@apply max-sm:text-xl text-3xl text-slate-800;
+}
+
+label {
+	@apply text-slate-600;
+}
+
+input {
+	@apply w-full p-4 inset-shadow-xs rounded-2xl focus:outline-none bg-white border border-slate-200;
+}
+
+textarea {
+	@apply w-full p-4 inset-shadow-xs rounded-2xl focus:outline-none bg-white border border-slate-200;
+}
+
+form {
+	@apply flex flex-col items-start gap-8 w-full;
+} */

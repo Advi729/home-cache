@@ -5,26 +5,31 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
-    "check": "biome check ./src",
-    "check:fix": "biome check --write ./src",
-    "lint": "biome lint ./src",
-    "lint:fix": "biome lint --write ./src",
-    "format": "biome format --write ./src",
+    "build": "react-router typegen && tsc -b && vite build",
+    "check": "biome check ./app",
+    "check:fix": "biome check --write ./app",
+    "lint": "biome lint ./app",
+    "lint:fix": "biome lint --write ./app",
+    "format": "biome format --write ./app",
     "verify": "npm run lint:fix && npm run check:fix && npm run format && npm run check && npm run build",
     "preview": "vite preview"
   },
   "dependencies": {
+    "@react-router/serve": "^8.4.0",
+    "isbot": "^5",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
-    "react-router-dom": "^7.18.4"
+    "react-router": "^8.4.0"
   },
   "devDependencies": {
     "@biomejs/biome": "2.5.15",
+    "@react-router/dev": "^8.4.0",
+    "@tailwindcss/vite": "^4.3.3",
     "@types/node": "^24.13.3",
     "@types/react": "^19.2.18",
     "@types/react-dom": "^19.2.7",
     "@vitejs/plugin-react": "^6.1.1",
+    "tailwindcss": "^4.3.3",
     "typescript": "~6.0.2",
     "vite": "^8.3.0"
   }

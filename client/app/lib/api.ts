@@ -2,11 +2,11 @@ const API_URL =
   import.meta.env.VITE_API_URL ||
   "http://localhost:5000/api";
 
-interface ApiResponse<T> {
-  success: boolean;
-  message?: string;
-  data: T;
-}
+// interface ApiResponse<T> {
+//   success: boolean;
+//   message?: string;
+//   data: T;
+// }
 
 export interface HomeDocument {
   _id: string;
@@ -63,7 +63,7 @@ export const getDocuments = () =>
 
 export const uploadDocument = async (
   file: File,
-  type = "other"
+  type = "receipt"
 ) => {
   const formData = new FormData();
 
@@ -86,7 +86,7 @@ export const retryDocument = (
     }
   );
 
-export const askHomeMemory = (
+export const askHomeCache = (
   question: string
 ) =>
   request<ChatResponse>("/chat", {

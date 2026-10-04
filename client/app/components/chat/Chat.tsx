@@ -4,7 +4,7 @@ import {
 } from "react";
 
 import {
-  askHomeMemory,
+  askHomeCache,
   type ChatResponse,
 } from "../../lib/api";
 
@@ -38,7 +38,7 @@ export function Chat() {
 
     try {
       const result =
-        await askHomeMemory(
+        await askHomeCache(
           trimmedQuestion
         );
 
@@ -65,7 +65,7 @@ export function Chat() {
 
           <div>
             <h2 className="font-semibold text-slate-950">
-              Ask HomeMemory
+              Ask HomeCache
             </h2>
 
             <p className="text-sm text-slate-500">

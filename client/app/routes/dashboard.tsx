@@ -53,7 +53,7 @@ export default function Dashboard() {
       <section className="rounded-3xl bg-slate-950 p-8 text-white sm:p-10">
         <div className="max-w-2xl">
           <p className="text-sm font-medium text-slate-400">
-            HomeMemory
+            HomeCache
           </p>
 
           <h1 className="mt-3 text-4xl font-bold tracking-tight sm:text-5xl">

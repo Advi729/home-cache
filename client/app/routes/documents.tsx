@@ -62,7 +62,7 @@ export default function Documents() {
           </h1>
 
           <p className="mt-2 text-slate-500">
-            Upload the documents HomeMemory should
+            Upload the documents HomeCache should
             remember.
           </p>
         </div>
