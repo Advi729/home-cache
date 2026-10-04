@@ -1,12 +1,13 @@
-import mongoose, { Document, Schema } from "mongoose";
+import mongoose, { Document, Schema } from 'mongoose';
 
 export type DocumentType =
-  | "manual"
-  | "receipt"
-  | "warranty"
-  | "service"
-  | "other";
+  | 'manual'
+  | 'receipt'
+  | 'warranty'
+  | 'service'
+  | 'other';
 
+export type DocumentStatus = 'processing' | 'ready' | 'failed';
 export interface IHomeDocument extends Document {
   name: string;
   originalName: string;
@@ -16,9 +17,15 @@ export interface IHomeDocument extends Document {
 
   type: DocumentType;
 
+  status: DocumentStatus;
+  errorMessage?: string | undefined;
+
   extractedText: string;
   createdAt: Date;
   updatedAt: Date;
+
+  processedAt?: Date | undefined;
+  chunkCount?: number | undefined;
 
   metadata: {
     productName?: string;
@@ -28,11 +35,6 @@ export interface IHomeDocument extends Document {
     serviceDate?: Date;
   };
 }
-
-export type DocumentStatus =
-  | "processing"
-  | "ready"
-  | "failed";
 
 const documentSchema = new Schema<IHomeDocument>(
   {
@@ -64,13 +66,33 @@ const documentSchema = new Schema<IHomeDocument>(
 
     type: {
       type: String,
-      enum: ["manual", "receipt", "warranty", "service", "other"],
-      default: "other",
+      enum: ['manual', 'receipt', 'warranty', 'service', 'other'],
+      default: 'other',
+    },
+
+    status: {
+      type: String,
+      enum: ['processing', 'ready', 'failed'],
+      default: 'processing',
+      required: true,
+    },
+
+    errorMessage: {
+      type: String,
     },
 
     extractedText: {
       type: String,
-      default: "",
+      default: '',
+    },
+
+    processedAt: {
+      type: Date,
+    },
+
+    chunkCount: {
+      type: Number,
+      default: 0,
     },
 
     metadata: {
@@ -83,10 +105,10 @@ const documentSchema = new Schema<IHomeDocument>(
   },
   {
     timestamps: true,
-  }
+  },
 );
 
 export const HomeDocument = mongoose.model<IHomeDocument>(
-  "HomeDocument",
-  documentSchema
+  'HomeDocument',
+  documentSchema,
 );
