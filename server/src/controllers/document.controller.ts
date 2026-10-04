@@ -1,10 +1,6 @@
 import { Request, Response } from "express";
-// import fs from "fs/promises";
 
 import { HomeDocument } from "../models/Document.js";
-import { extractPdfText } from "../services/documents/textExtractor.js";
-
-import { ingestDocument } from "../services/rag/ingestDocument.js";
 import { processDocument } from "../services/documents/processDocument.js";
 
 export const uploadDocument = async (

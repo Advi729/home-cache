@@ -6,15 +6,13 @@ import chatRoutes from "./routes/chat.routes.js";
 
 const app = express();
 
-app.use(cors());
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+  })
+);
 app.use(express.json());
 
-app.get("/api/health", (_req, res) => {
-  res.json({
-    success: true,
-    message: "Home Cache API is running",
-  });
-});
 
 app.use("/api/documents", documentRoutes);
 
