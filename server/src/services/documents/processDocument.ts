@@ -4,7 +4,7 @@ import { ingestDocument } from "../rag/ingestDocument.js";
 import { DocumentChunk } from "../../models/DocumentChunk.js";
 
 export const processDocument = async (
-  documentId: string
+  documentId: string 
 ) => {
   const document =
     await HomeDocument.findById(documentId);
