@@ -1,10 +1,12 @@
 import { Router } from "express";
 
-import { searchMemory } from "../controllers/chat.controller.js";
+import {
+  chat,
+} from "../controllers/chat.controller.js";
 
 const router = Router();
 
 // Search the relevant document
-router.post("/search", searchMemory);
+router.post("/", chat);
 
 export default router;

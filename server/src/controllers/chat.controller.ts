@@ -1,8 +1,12 @@
 import { Request, Response } from "express";
 
-import { retrieveRelevantChunks } from "../services/rag/retriever.js";
+import { generateAnswer } from "../services/ai/llm.js";
+import { buildContext } from "../services/rag/contextBuilder.js";
+import {
+  retrieveRelevantChunks,
+} from "../services/rag/retriever.js";
 
-export const searchMemory = async (
+export const chat = async (
   req: Request,
   res: Response
 ): Promise<void> => {
@@ -22,22 +26,52 @@ export const searchMemory = async (
     }
 
     const chunks = await retrieveRelevantChunks(
-      question
+      question,
+      5
     );
+
+    if (chunks.length === 0) {
+      res.json({
+        success: true,
+        data: {
+          answer:
+            "I couldn't find any relevant information in your household memory.",
+          sources: [],
+        },
+      });
+
+      return;
+    }
+
+    const context = buildContext(chunks);
+
+    const answer = await generateAnswer({
+      question,
+      context,
+    });
+
+    const sources = chunks.map((chunk) => ({
+      documentId: chunk.documentId,
+      documentName: chunk.documentName,
+      chunkIndex: chunk.chunkIndex,
+      score: chunk.score,
+    }));
 
     res.json({
       success: true,
-      data: chunks,
+      data: {
+        answer,
+        sources,
+      },
     });
   } catch (error) {
-    console.error(
-      "Memory search error:",
-      error
-    );
+    // console.error("Chat error:", error);
+    console.error("Chat error:");
+    console.dir(error, { depth: null });
 
     res.status(500).json({
       success: false,
-      message: "Failed to search memory.",
+      message: "Failed to generate an answer.",
     });
   }
 };

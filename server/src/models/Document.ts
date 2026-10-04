@@ -29,6 +29,11 @@ export interface IHomeDocument extends Document {
   };
 }
 
+export type DocumentStatus =
+  | "processing"
+  | "ready"
+  | "failed";
+
 const documentSchema = new Schema<IHomeDocument>(
   {
     name: {

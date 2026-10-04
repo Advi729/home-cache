@@ -7,3 +7,4 @@ if (!token) {
 }
 
 export const hf = new InferenceClient(token);
+
