@@ -13,7 +13,7 @@ export function SuggestedQuestions({
   onSelect,
 }: Props) {
   return (
-    <div className="mt-5">
+    <div className="mt-5 mb-5">
       <p className="mb-3 text-xs font-semibold uppercase tracking-wide text-slate-400">
         Try asking
       </p>

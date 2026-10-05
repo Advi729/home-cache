@@ -121,7 +121,7 @@ export function Chat() {
                   {response.sources.map(
                     (source, index) => (
                       <div
-                        key={`${source.documentId}-${source.chunkIndex}-${index}`}
+                        key={`${source.documentId}-${source.chunkIndex}`}
                         className="flex items-center gap-3 rounded-xl border border-slate-100 p-3"
                       >
                         <span className="text-sm">
@@ -152,6 +152,10 @@ export function Chat() {
         onSubmit={handleSubmit}
         className="border-t border-slate-100 p-4"
       >
+        <SuggestedQuestions
+            onSelect={setQuestion}
+          />
+
         <div className="flex gap-3 rounded-2xl border border-slate-200 bg-slate-50 p-2 focus-within:border-slate-400">
           <input
             value={question}
@@ -162,9 +166,7 @@ export function Chat() {
             className="min-w-0 flex-1 bg-transparent px-3 py-2 text-sm text-slate-900 outline-none placeholder:text-slate-400"
           />
 
-          <SuggestedQuestions
-            onSelect={setQuestion}
-          />
+          
 
           <button
             type="submit"
@@ -176,6 +178,8 @@ export function Chat() {
           >
             Ask
           </button>
+
+          
         </div>
       </form>
     </section>
