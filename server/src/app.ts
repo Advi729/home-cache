@@ -15,11 +15,11 @@ app.use(
 app.use(express.json());
 
 
-app.use("/api/documents", documentRoutes);
+app.use("/documents", documentRoutes);
 
-app.use("/api/chat", chatRoutes);
+app.use("/chat", chatRoutes);
 
-app.use("/api/demo", demoRoutes);
+app.use("/demo", demoRoutes);
 
 
 
