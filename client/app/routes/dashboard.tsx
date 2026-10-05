@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
+import { useSearchParams } from "react-router";
 
 import {
   getDocuments,
@@ -8,6 +9,7 @@ import {
 import { Chat } from "../components/chat/Chat";
 import { DocumentCard } from "../components/documents/DocumentCard";
 import { DocumentUploader } from "../components/documents/DocumentUploader";
+import { MeetTheMemory } from "../components/demo/MeetTheMemory";
 
 export default function Dashboard() {
   const [documents, setDocuments] =
@@ -46,6 +48,9 @@ export default function Dashboard() {
       (document) =>
         document.status === "failed"
     ).length;
+
+  const [searchParams] = useSearchParams();
+  const demoMode = searchParams.get("demo") === "true";
 
   return (
     <main className="mx-auto max-w-6xl px-6 py-10">
@@ -108,10 +113,34 @@ export default function Dashboard() {
         </div>
       </section>
 
+      <section className="mt-6">
+        <MeetTheMemory />
+      </section>
+
+      {demoMode && (
+        <div className="mt-6 flex items-center justify-between rounded-xl border border-amber-200 bg-amber-50 px-4 py-3">
+          <div className="flex items-center gap-3">
+            <span className="text-lg">✨</span>
+
+            <div>
+              <p className="text-sm font-semibold text-amber-900">
+                Demo Memory is active
+              </p>
+
+              <p className="text-xs text-amber-700">
+                You're exploring fictional household data.
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Chat */}
       <section className="mt-6">
         <Chat />
       </section>
+
+      
 
       {/* Recent documents */}
       {documents.length > 0 && (
@@ -141,6 +170,8 @@ export default function Dashboard() {
           </div>
         </section>
       )}
+
+      
     </main>
   );
 }

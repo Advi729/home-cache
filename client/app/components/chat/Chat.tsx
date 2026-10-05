@@ -8,6 +8,10 @@ import {
   type ChatResponse,
 } from "../../lib/api";
 
+import {
+  SuggestedQuestions,
+} from "./SuggestedQuestions";
+
 export function Chat() {
   const [question, setQuestion] =
     useState("");
@@ -156,6 +160,10 @@ export function Chat() {
             }
             placeholder="When does my washing machine warranty expire?"
             className="min-w-0 flex-1 bg-transparent px-3 py-2 text-sm text-slate-900 outline-none placeholder:text-slate-400"
+          />
+
+          <SuggestedQuestions
+            onSelect={setQuestion}
           />
 
           <button

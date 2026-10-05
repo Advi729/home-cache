@@ -33,6 +33,13 @@ export interface ChatResponse {
   sources: ChatSource[];
 }
 
+export interface DemoDocument {
+  id: string;
+  name: string;
+  type: string;
+  status: string;
+}
+
 const request = async <T>(
   endpoint: string,
   options?: RequestInit
@@ -97,4 +104,12 @@ export const askHomeCache = (
     body: JSON.stringify({
       question,
     }),
+  });
+
+export const startDemo = () =>
+  request<{
+    seeded: boolean;
+    documents: DemoDocument[];
+  }>("/demo", {
+    method: "POST",
   });
