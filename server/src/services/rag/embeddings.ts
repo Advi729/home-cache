@@ -1,6 +1,6 @@
 import { hf } from "../ai/huggingface.js";
 
-const EMBEDDING_MODEL = "BAAI/bge-small-en-v1.5";
+const EMBEDDING_MODEL = String(process.env.EMBEDDING_MODEL);
 
 export const generateEmbedding = async (
   text: string
