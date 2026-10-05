@@ -13,6 +13,12 @@ export const processDocument = async (
     throw new Error("Document not found.");
   }
 
+  if (!document.filePath) {
+    throw new Error(
+      "Document does not have an associated file."
+    );
+  }
+
   document.status = "processing";
   document.errorMessage = undefined;
 

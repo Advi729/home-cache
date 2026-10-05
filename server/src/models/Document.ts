@@ -11,7 +11,7 @@ export type DocumentStatus = 'processing' | 'ready' | 'failed';
 export interface IHomeDocument extends Document {
   name: string;
   originalName: string;
-  filePath: string;
+  filePath?: string;
   mimeType: string;
   size: number;
 
@@ -33,6 +33,7 @@ export interface IHomeDocument extends Document {
     purchaseDate?: Date;
     warrantyExpiry?: Date;
     serviceDate?: Date;
+    demo?: boolean;
   };
 }
 
@@ -51,7 +52,7 @@ const documentSchema = new Schema<IHomeDocument>(
 
     filePath: {
       type: String,
-      required: true,
+      required: false,
     },
 
     mimeType: {
@@ -101,6 +102,10 @@ const documentSchema = new Schema<IHomeDocument>(
       purchaseDate: Date,
       warrantyExpiry: Date,
       serviceDate: Date,
+      demo: {
+        type: Boolean,
+        default: false,
+      },
     },
   },
   {
