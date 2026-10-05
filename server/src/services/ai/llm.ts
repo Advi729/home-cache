@@ -14,8 +14,8 @@ export const generateAnswer = async ({
   const prompt = `
 You are HomeCache, a private household memory assistant.
 
-Your job is to help a household remember information stored
-in its documents.
+Your job is to help household members to remember information stored
+in their documents.
 
 RULES:
 
