@@ -119,7 +119,7 @@ export function Chat() {
 
                 <div className="space-y-2">
                   {response.sources.map(
-                    (source, index) => (
+                    (source) => (
                       <div
                         key={`${source.documentId}-${source.chunkIndex}`}
                         className="flex items-center gap-3 rounded-xl border border-slate-100 p-3"
