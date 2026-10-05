@@ -1,6 +1,6 @@
 import { hf } from "./huggingface.js";
 
-const MODEL = "google/gemma-2-2b-it:featherless-ai";
+const MODEL = String(process.env.AI_MODEL);
 
 interface GenerateAnswerParams {
   question: string;
